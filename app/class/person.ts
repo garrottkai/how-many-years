@@ -5,5 +5,7 @@ export class Person {
     public personTitle: string,
     public personAssets: number,
     public personDescription: string
-  )
+  ) {
+    
+  }
 };
