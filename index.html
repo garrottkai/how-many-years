@@ -4,18 +4,66 @@
     <meta charset="utf-8" />
     <title>Hello, React</title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js" integrity="sha256-Rtnfi1MVZAj3v+eDeFjh/iAXo8//D0zVKql8fjVLCiM=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js" integrity="sha256-uzKwYuH50DHzDYr3h/Bnpv7C5QJNUjHEpVmT3Xuq3ww=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.min.js" integrity="sha256-zSpX/F9KKuk1nLBq2vygsdDm6QrSbVdn5lteMkdzWdk=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.min.js"></script>
+      <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+
+      <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
 
   </head>
   <body>
 
     <div id="app"></div>
     <script type="text/babel">
+
     class App extends React.Component  {
       render() {
-        return <h1>Howdy, React</h1>
+        return (
+              <div className="notificationsFrame">
+                <div className="panel">
+                <Header />
+                <Content />
+                </div>
+              </div>
+        )
+      }
+    }
+
+    class Header extends React.Component {
+      render() {
+        return (
+          <div className="header">
+                <div className="fa fa-more"></div>
+                <span className="title">Timeline</span>
+                <input
+                  type="text"
+                  className="searchInput"
+                  placeholder="Search ..." />
+                <div className="fa fa-search searchIcon"></div>
+              </div>
+        )
+      }
+    }
+
+    class Content extends React.Component {
+      render() {
+        return (
+          <div className="content">
+            <div className="line"></div>
+            <div className="item">
+              <div className="avatar">
+                <img src="http://www.croop.cl/UI/twitter/images/doug.jpg" />
+              </div>
+              <span className="time">
+                An hour ago
+              </span>
+              <p>Ate lunch</p>
+              <div className="commentCount">
+              2
+              </div>
+            </div>
+          </div>
+        )
       }
     }
     var mount = document.querySelector('#app');
