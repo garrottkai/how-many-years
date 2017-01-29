@@ -2,12 +2,19 @@ function App(props) {
     return (
           <div className="notificationsFrame">
             <div className="panel">
-            <Header title={props.title} />
-            <Content />
+              <Header
+                title={props.title}
+              />
+              <Content
+                timestamp={props.timestamp}
+                text={props.text}
+                user={props.user}
+                comments={props.comments}
+              />
             </div>
           </div>
-    )
-};
+    );
+}
 
 function Header(props) {
     return (
@@ -22,8 +29,8 @@ function Header(props) {
               placeholder="Search ..." />
             <div className="fa fa-search searchIcon"></div>
           </div>
-    )
-};
+    );
+}
 
 function Content(props) {
     return (
@@ -43,8 +50,8 @@ function Content(props) {
           </div>
         </div>
       </div>
-    )
-};
+    );
+}
 
 const info = [
   {
@@ -70,7 +77,7 @@ const activities = [
   }
 ];
 
-var mount = document.querySelector('#app');
+var mount = document.getElementById('app');
 ReactDOM.render(
   <App
     title={info.title}
