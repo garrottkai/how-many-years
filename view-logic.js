@@ -1,23 +1,20 @@
-class App extends React.Component  {
-  render() {
+function App(props) {
     return (
           <div className="notificationsFrame">
             <div className="panel">
-            <Header title="Timeline" />
-            <Content activities={this.activities} />
+            <Header title={props.title} />
+            <Content />
             </div>
           </div>
     )
-  }
-}
+};
 
-class Header extends React.Component {
-  render() {
+function Header(props) {
     return (
       <div className="header">
             <div className="fa fa-more"></div>
             <span className="title">
-              {this.props.title}
+              {props.title}
             </span>
             <input
               type="text"
@@ -26,48 +23,59 @@ class Header extends React.Component {
             <div className="fa fa-search searchIcon"></div>
           </div>
     )
-  }
-}
+};
 
-class Content extends React.Component {
-
-  render() {
-    const activities = [
-      {
-        timestamp: new Date().getTime(),
-        text: "Ate lunch",
-        user: {
-          id: 1,
-          name: "Nate",
-          avatar: "http://www.croop.cl/UI/twitter/images/doug.jpg"
-        },
-        comments: [
-          {
-            from: 'Ari',
-            text: 'Me too!'
-          }
-        ]
-      }
-    ]
+function Content(props) {
     return (
       <div className="content">
         <div className="line"></div>
         <div className="item">
           <div className="avatar">
-            <img src={this.activities.user.avatar} />
-            {this.activities.user.name}
+            <img src={props.user.avatar} />
+            {props.user.name}
           </div>
           <span className="time">
-            {this.activities.timestamp}
+            {props.timestamp}
           </span>
-          <p>{this.activities.text}</p>
+          <p>{props.text}</p>
           <div className="commentCount">
-          {this.activities.comments.length}
+          {props.comments.length}
           </div>
         </div>
       </div>
     )
+};
+
+const info = [
+  {
+  title: "Howdy, React"
   }
-}
+];
+
+const activities = [
+  {
+    timestamp: new Date().getTime(),
+    text: "Ate lunch",
+    user: {
+      id: 1,
+      name: "Nate",
+      avatar: "http://www.croop.cl/UI/twitter/images/doug.jpg"
+    },
+    comments: [
+      {
+        from: 'Ari',
+        text: 'Me too!'
+      }
+    ]
+  }
+];
+
 var mount = document.querySelector('#app');
-ReactDOM.render(<App />, mount);
+ReactDOM.render(
+  <App
+    title={info.title}
+    timestamp={activities.timestamp}
+    text={activities.text}
+    user={activities.user}
+    comments={activities.comments}
+   />, mount);
