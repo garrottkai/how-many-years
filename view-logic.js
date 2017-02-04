@@ -10,6 +10,7 @@ class App extends React.Component {
             activities={activities}
           />
         </div>
+        <Clock />
       </div>
     );
   }
@@ -36,38 +37,75 @@ class Header extends React.Component {
 class Content extends React.Component {
   render() {
     const {activity} = this.props;
+
     return (
       <div className="content">
         <div className="line"></div>
 
-        {activities.map((activity) => {
-          return (
-            <div className="item">
-              <div className="avatar">
-                <img src={activity.user.avatar} />
-                  {activity.user.name}
-              </div>
-              <span className="time">
-                {activity.timestamp}
-              </span>
-              <p>{activity.text}</p>
-              <div className="commentCount">
-                {activity.comments.length}
-              </div>
-            </div>
-          );
-        })}
+        {activities.map((activity) => (
+          <ActivityItem
+            activity={activity}
+          />
+        ))}
 
         </div>
     )
   }
 }
 
-const info = [
-  {
-  title: "Howdy, React"
+class ActivityItem extends React.Component {
+  render() {
+    const {activity} = this.props;
+
+    return (
+      <div className="item">
+        <div className="avatar">
+          <img src={activity.user.avatar} />
+            {activity.user.name}
+        </div>
+        <span className="time">
+          {activity.timestamp}
+        </span>
+        <p>{activity.text}</p>
+        <div className="commentCount">
+          {activity.comments.length}
+        </div>
+      </div>
+    )
   }
-];
+}
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+
+    const currentTime = new Date();
+    this.state = {
+      hours: currentTime.getHours(),
+      minutes: currentTime.getMinutes(),
+      seconds: currentTime.getSeconds(),
+      ampm: hours >= 12 ? 'pm' : 'am'
+    };
+  }
+
+  render() {
+
+
+    return (
+      <div className="clock">
+        {
+          hours == 0 ? 12 :
+           (hours > 12) ?
+            hours - 12 : hours
+        }:{
+          minutes > 9 ? minutes : '0${minutes}'
+        }:{
+          seconds > 9 ? seconds : '0${seconds}'
+        } {ampm}
+      </div>
+    )
+  }
+}
 
 const activities = [
   {
