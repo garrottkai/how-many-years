@@ -86,10 +86,27 @@ class Clock extends React.Component {
       seconds: currentTime.getSeconds(),
       ampm: hours >= 12 ? 'pm' : 'am'
     };
+
+    this.setTimer();
+  }
+
+  setTimer() {
+    setTimeout(this.updateClock.bind(this), 1000);
+  }
+
+  updateClock() {
+    const currentTime = new Date();
+    this.setState({
+      hours: currentTime.getHours(),
+      minutes: currentTime.getMinutes(),
+      seconds: currentTime.getSeconds(),
+      ampm: hours >= 12 ? 'pm' : 'am'
+    }, this.setTimer);
+
   }
 
   render() {
-
+    const {hours, minutes, seconds, ampm} = this.state;
 
     return (
       <div className="clock">
