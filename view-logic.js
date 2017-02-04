@@ -40,7 +40,7 @@ class Content extends React.Component {
       <div className="content">
         <div className="line"></div>
 
-        activities.map((activity) => {
+        {activities.map((activity) => {
           return (
             <div className="item">
               <div className="avatar">
@@ -56,7 +56,7 @@ class Content extends React.Component {
               </div>
             </div>
           );
-        })
+        })}
 
         </div>
     )
@@ -89,10 +89,4 @@ const activities = [
 
 var mount = document.getElementById('app');
 ReactDOM.render(
-  <App
-    title={info.title}
-    timestamp={activities.timestamp}
-    text={activities.text}
-    user={activities.user}
-    comments={activities.comments}
-   />, mount);
+  <App />, mount);
