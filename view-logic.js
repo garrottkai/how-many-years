@@ -84,7 +84,7 @@ class Clock extends React.Component {
       hours: currentTime.getHours(),
       minutes: currentTime.getMinutes(),
       seconds: currentTime.getSeconds(),
-      ampm: hours >= 12 ? 'pm' : 'am'
+      ampm: currentTime.getHours() >= 12 ? 'pm' : 'am'
     };
 
     this.setTimer();
@@ -100,7 +100,7 @@ class Clock extends React.Component {
       hours: currentTime.getHours(),
       minutes: currentTime.getMinutes(),
       seconds: currentTime.getSeconds(),
-      ampm: hours >= 12 ? 'pm' : 'am'
+      ampm: currentTime.getHours() >= 12 ? 'pm' : 'am'
     }, this.setTimer);
 
   }
