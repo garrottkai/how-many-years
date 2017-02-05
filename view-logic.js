@@ -17,7 +17,28 @@ class App extends React.Component {
 }
 
 class Header extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchVisible: false
+    }
+  }
+
+  showSearch() {
+    this.setState({
+      searchVisible: !this.state.searchVisible
+    })
+  }
+
+
   render() {
+    let searchInputClasses = ["searchInput"];
+
+    if (this.state.searchVisible) {
+      searchInputClasses.push("active");
+    }
+
     return (
       <div className="header">
         <div className="fa fa-more"></div>
@@ -26,12 +47,18 @@ class Header extends React.Component {
         </span>
         <input
           type="text"
-          className="searchInput"
+          className={searchInputClasses.join('')}
           placeholder="Search ..." />
-        <div className="fa fa-search searchIcon"></div>
+        <div
+          onClick={this.showSearch.bind(this)}
+          className="fa fa-search searchIcon"></div>
       </div>
-    );
+    )
   }
+}
+
+Header.propTypes = {
+  title: React.PropTypes.string
 }
 
 class Content extends React.Component {
@@ -73,6 +100,21 @@ class ActivityItem extends React.Component {
       </div>
     )
   }
+}
+
+ActivityItem.propTypes = {
+  timestamp : React.PropTypes.number,
+  text      : React.PropTypes.string,
+  user      : React.PropTypes.shape({
+    id        : React.PropTypes.number,
+    name      : React.PropTypes.string,
+    avatar    : React.PropTypes.string,
+  }),
+  comments  : React.PropTypes.arrayOf(React.PropTypes.shape({
+    from      : React.PropTypes.string,
+    text      : React.PropTypes.string,
+  })),
+
 }
 
 class Clock extends React.Component {
